@@ -45,10 +45,10 @@ impl UintTWHash {
     }
 }
 
-impl HashFun<usize> for UintTWHash {
+impl<T: ::std::convert::Into<usize> + Clone> HashFun<T> for UintTWHash {
     #[inline]
-    fn hash(&self, a: &usize) -> usize {
-        tomas_wang_hash(*a)
+    fn hash(&self, a: &T) -> usize {
+        tomas_wang_hash(a.clone().into())
     }
 }
 
